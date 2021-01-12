@@ -31,14 +31,77 @@ int main()
 //    }(7, 3) << endl;
 
     //Capture Lists;
-    int a = 7;
-    int b = 3;
+//    int a = 7;
+//    int b = 3;
 
-    [a,b](){
-        cout << "a is : " << a << endl;
-        cout << "b is : " << b << endl;
-        cout << "a + b = " << a + b << endl;
-    }();
+//    [a,b](){
+//        cout << "a is : " << a << endl;
+//        cout << "b is : " << b << endl;
+//        cout << "a + b = " << a + b << endl;
+//    }();
 
+    //Capturing by value
+//    int c = 42;
+
+//    auto func = [c]()
+//    {
+//        cout << "The inner value of c is : " << c << endl;
+//    };
+
+//    for(int i = 1; i < 5; i++){
+//        cout << "The outer value of c is : " << c << endl;
+//        func();
+//        c++;
+//    }
+//    return 0;
+
+    //Capturing by reference
+//    int c = 42;
+
+//    auto func = [&c]()
+//    {
+//        cout << "The inner value of c is : " << c << endl;
+//    };
+
+//    for(int i = 1; i < 5; i++){
+//        cout << "The outer value of c is : " << c << endl;
+//        func();
+//        c++;
+//    }
+//    return 0;
+
+//    //Capture everything by value
+//    int c = 42;
+//    int d = 6;
+
+//    auto func = [=]()
+//    {
+//        cout << "The inner value of c is : " << c << endl;
+//        cout << "The inner value of d is : " << d << endl;
+//    };
+
+//    for(int i = 1; i < 5; i++){
+//        cout << "The outer value of c is : " << c << endl;
+//        func();
+//        c++;
+//    }
+//    return 0;
+//}
+
+    //Capture everything by reference
+    int c = 42;
+    int d = 6;
+
+    auto func = [&]()
+    {
+        cout << "The inner value of c is : " << c << endl;
+        cout << "The inner value of d is : " << d << endl;
+    };
+
+    for(int i = 1; i < 5; i++){
+        cout << "The outer value of c is : " << c << endl;
+        func();
+        c++;
+    }
     return 0;
 }
