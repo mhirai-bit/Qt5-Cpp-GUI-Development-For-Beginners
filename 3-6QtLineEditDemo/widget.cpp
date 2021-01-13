@@ -14,7 +14,7 @@ Widget::Widget(QWidget *parent)
 
     QLineEdit *firstNameLineEdit = new QLineEdit(this);
     firstNameLineEdit->setMinimumSize(200, 50);
-    firstNameLineEdit->move(100, 70);
+    firstNameLineEdit->move(100, 10);
 
     //Last Name
     QLabel *lastNameLabel = new QLabel("Last Name", this);
@@ -23,7 +23,7 @@ Widget::Widget(QWidget *parent)
 
     QLineEdit *lastNameLineEdit = new QLineEdit(this);
     lastNameLineEdit->setMinimumSize(200, 50);
-    lastNameLineEdit->move(100, 10);
+    lastNameLineEdit->move(100, 70);
 
     //City
     QLabel * cityLabel = new QLabel("City", this);
@@ -33,6 +33,67 @@ Widget::Widget(QWidget *parent)
     QLineEdit *cityLineEdit = new QLineEdit(this);
     cityLineEdit->setMinimumSize(200, 50);
     cityLineEdit->move(100, 130);
+
+    QFont buttonFont("Times", 20, QFont::Bold);
+    QPushButton *button = new QPushButton("Grab data", this);
+    button->move(80, 190);
+
+    connect(button, &QPushButton::clicked,[=](){
+        QString firstName = firstNameLineEdit->text();
+        QString lastName  = lastNameLineEdit->text();
+        QString city      = cityLineEdit->text();
+
+
+
+        if(!firstName.isEmpty() && !lastName.isEmpty() && !city.isEmpty()){
+            //If neither field is empty we fall here
+            qDebug() << " First name is : " << firstName;
+            qDebug() << " Last name is : " << lastName;
+            qDebug() << " city name is : " << city;
+        }else{
+            qDebug() << "One field is empty ";
+        }
+    });
+
+    //Respond to signals from QLineEdits
+
+    //cursorPositionChanged
+//    connect(firstNameLineEdit, &QLineEdit::cursorPositionChanged,[=](){
+//        qDebug() << "The current cursor position is : " << firstNameLineEdit->cursorPosition();
+//    });
+
+    //editingFinished : emitted when user clicks enter or when line edit loses focus
+//    connect(firstNameLineEdit, &QLineEdit::editingFinished,[=](){
+//        qDebug() << "Editing finished";
+//    });
+
+    //returnPressed
+//    connect(firstNameLineEdit, &QLineEdit::returnPressed,[=](){
+//        qDebug() << "Return Pressed";
+//    });
+
+    //selectionChanged
+//    connect(firstNameLineEdit, &QLineEdit::selectionChanged,[=](){
+//        qDebug() << "Selection Changed";
+//    });
+
+    //textChanged
+//    connect(firstNameLineEdit, &QLineEdit::textChanged,[=](){
+//        qDebug() << "Text Changed to : " << firstNameLineEdit->text();
+//    });
+
+    //textEdited
+    connect(firstNameLineEdit, &QLineEdit::textEdited,[=](){
+        qDebug() << "Text Edited and changed to : " << firstNameLineEdit->text();
+    });
+
+    //Change tex in QLineEdit pragrammaticaly
+//    lastNameLineEdit->setText("Say your last name");
+
+    //Hint text
+    firstNameLineEdit->setPlaceholderText("First name");
+    lastNameLineEdit->setPlaceholderText("Last name");
+    cityLineEdit->setPlaceholderText("City");
 }
 
 Widget::~Widget()
